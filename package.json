@@ -1,0 +1,60 @@
+{
+  "name": "codeforge",
+  "version": "1.0.0",
+  "description": "CodeForge — Interactive Code Learning Platform",
+  "main": "main.js",
+  "scripts": {
+    "start":     "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:all": "electron-builder --win --mac"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron":         "^29.0.0",
+    "electron-builder": "^24.9.0"
+  },
+  "build": {
+    "appId":       "com.codeforge.app",
+    "productName": "CodeForge",
+    "copyright":   "Copyright © 2025",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "assets/**"
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis",     "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        { "target": "dmg",  "arch": ["x64", "arm64"] },
+        { "target": "zip",  "arch": ["x64", "arm64"] }
+      ],
+      "icon":     "assets/icon.icns",
+      "category": "public.app-category.education"
+    },
+    "nsis": {
+      "oneClick":           false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon":  "assets/icon.ico",
+      "uninstallerIcon":"assets/icon.ico"
+    },
+    "dmg": {
+      "title":  "CodeForge",
+      "window": { "width": 540, "height": 380 }
+    }
+  }
+}
